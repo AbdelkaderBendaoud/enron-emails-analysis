@@ -1,0 +1,29 @@
+features_train, features_test, labels_train, labels_test = preprocess()
+
+from sklearn.metrics import accuracy_score
+from sklearn.svm import SVC
+clf = SVC(kernel="rbf" , C = 10000 )
+t0 = time()
+
+
+clf.fit(features_train,labels_train)
+print "training time with SVM's linear kernel", time() - t0
+
+t1 = time()
+pred = clf.predict(features_test)
+print "prediction time with SVM's linear kernel", time() - t1
+
+accuracy = accuracy_score(labels_test, pred)
+
+print accuracy
+
+chris = []
+sara = []
+for i in pred:
+    if i==1:
+        chris.append(i)
+    else:
+        sara.append(i)
+
+print 'chris has : ',sum(chris)
+print 'sara has ; ',sum(sara)
